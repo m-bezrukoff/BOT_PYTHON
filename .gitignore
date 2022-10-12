@@ -4,3 +4,4 @@ __pycache__/
 *.dat
 *.hdf5
 /log/
+reports/
