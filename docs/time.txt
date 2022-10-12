@@ -1,0 +1,9 @@
+time() -> utc stamp
+ctime    (stamp)      -> local text
+localtime(stamp) 	  -> local stuct_time
+gmtime   (stamp) 	  -> utc stuct_time
+mktime   (stuct_time) -> local stamp
+asctime  (stuct_time) -> text ???
+strftime (stuct_time) -> text			strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+strptime (string)     -> struct_time	strptime(string, "%d %B, %Y")
+

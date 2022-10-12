@@ -1,0 +1,770 @@
+2021-07-31 08:17:39 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 08:17:39 [DEBUG] : client - state = CONNECTING
+2021-07-31 08:17:39 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x0000023137434940>)
+2021-07-31 08:17:39 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 08:17:39 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'xw46A8cfC0k6TWBfzjnr8Q=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 08:17:39 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 08:17:39 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 08:17:39 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 05:17:39 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'PVSD6/7ZtXFEcguB+PNL2N9o1i8='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '67745c932d241667-DME')])
+2021-07-31 08:17:39 [DEBUG] : client - state = OPEN
+2021-07-31 08:17:39 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "sign": "aef4be16fd7002bdb7c1fdfab465b0a063c9f50e576484c35d91e889b314de593ec1fe646ee1645bbea48dee5b5f5e6bdc076d03c35b1bb6abbe522bfbbaaea2", "key": "KPM9XNOI-69M9E4H4-CSMIE92Y-9ZLXNUZQ", "payload": "nonce=162770865994754"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 08:17:40 [DEBUG] : client - event = data_received(<32 bytes>)
+2021-07-31 08:17:40 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Permission denied."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 08:17:40 [INFO ] : Stream no. 1
+2021-07-31 08:17:40 [INFO ] : ---
+2021-07-31 08:17:40 [INFO ] : {'error': 'Permission denied.'}
+2021-07-31 08:17:40 [INFO ] : ---
+2021-07-31 08:17:41 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 08:17:41 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 08:17:41 [INFO ] : Stream no. 2
+2021-07-31 08:17:41 [INFO ] : ---
+2021-07-31 08:17:41 [INFO ] : [1010]
+2021-07-31 08:17:41 [INFO ] : ---
+2021-07-31 08:17:42 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 08:17:42 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 08:17:42 [INFO ] : Stream no. 3
+2021-07-31 08:17:42 [INFO ] : ---
+2021-07-31 08:17:42 [INFO ] : [1010]
+2021-07-31 08:17:42 [INFO ] : ---
+2021-07-31 08:17:42 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 08:17:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000231374329A0>()]> cb=[<TaskWakeupMethWrapper object at 0x0000023137432D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 08:17:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000023137432CD0>()]>>
+2021-07-31 08:17:42 [DEBUG] : client x closing TCP connection
+2021-07-31 08:17:42 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x0000023137420D90>
+transport: <_ProactorSocketTransport fd=480 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 08:17:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000231374329A0>()]> cb=[<TaskWakeupMethWrapper object at 0x0000023137432D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 08:17:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000023137432D30>()]>>
+2021-07-31 08:17:42 [ERROR] : ***
+2021-07-31 08:17:42 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 08:17:42 [ERROR] : ***
+2021-07-31 10:52:10 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 10:52:10 [DEBUG] : client - state = CONNECTING
+2021-07-31 10:52:10 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x0000025E35515940>)
+2021-07-31 10:52:10 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 10:52:10 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'eDDS6+ShEyuLeTQLC95YpA=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 10:52:10 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 10:52:10 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 10:52:10 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 07:52:11 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'r4446Ak9IjLDXSKXD6Zpb4iVjnA='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '67753eeb3c162de4-DME')])
+2021-07-31 10:52:10 [DEBUG] : client - state = OPEN
+2021-07-31 10:52:10 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "sign": "441f8d60e3af08761a3a48b40ff1a1958bac7f003783d006bc306163cc7754bf319b6256bd32fd27aff299446d93f2abab40c7336cbd921707714b23e549f981", "key": "KPM9XNOI-69M9E4H4-CSMIE92Y-9ZLXNUZQ", "payload": "nonce=162771793098477"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:52:11 [DEBUG] : client - event = data_received(<32 bytes>)
+2021-07-31 10:52:11 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Permission denied."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:52:11 [INFO ] : Stream no. 1
+2021-07-31 10:52:11 [INFO ] : ---
+2021-07-31 10:52:11 [INFO ] : {'error': 'Permission denied.'}
+2021-07-31 10:52:11 [INFO ] : ---
+2021-07-31 10:52:11 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:52:11 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:52:11 [INFO ] : Stream no. 2
+2021-07-31 10:52:11 [INFO ] : ---
+2021-07-31 10:52:11 [INFO ] : [1010]
+2021-07-31 10:52:11 [INFO ] : ---
+2021-07-31 10:52:12 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:52:12 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:52:12 [INFO ] : Stream no. 3
+2021-07-31 10:52:12 [INFO ] : ---
+2021-07-31 10:52:12 [INFO ] : [1010]
+2021-07-31 10:52:12 [INFO ] : ---
+2021-07-31 10:52:13 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:52:13 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:52:13 [INFO ] : Stream no. 4
+2021-07-31 10:52:13 [INFO ] : ---
+2021-07-31 10:52:13 [INFO ] : [1010]
+2021-07-31 10:52:13 [INFO ] : ---
+2021-07-31 10:52:14 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 10:52:14 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000025E35512A90>()]> cb=[<TaskWakeupMethWrapper object at 0x0000025E35512D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 10:52:14 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000025E35512CD0>()]>>
+2021-07-31 10:52:14 [DEBUG] : client x closing TCP connection
+2021-07-31 10:52:14 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x0000025E35500D90>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 10:52:14 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000025E35512A90>()]> cb=[<TaskWakeupMethWrapper object at 0x0000025E35512D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 10:52:14 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000025E355129A0>()]>>
+2021-07-31 10:52:14 [ERROR] : ***
+2021-07-31 10:52:14 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 10:52:14 [ERROR] : ***
+2021-07-31 10:55:54 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 10:55:54 [DEBUG] : client - state = CONNECTING
+2021-07-31 10:55:54 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000002D1C8C65940>)
+2021-07-31 10:55:54 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 10:55:54 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'vMPZPWolJ2T6CMoS7C2o0w=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 10:55:55 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 10:55:55 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 10:55:55 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 07:55:55 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'An4z42FP3wenleG2/CfGHnEB898='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '67754464af5d3a83-DME')])
+2021-07-31 10:55:55 [DEBUG] : client - state = OPEN
+2021-07-31 10:55:55 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "sign": "15795e15aea2dbfd42e83dd5308d216708534c82e8ad13f3c40d899e88921385f3ae0427cedfd53fbb08ec32b07c8f8e08f5b54b3b361064f18f202d0b7e3f8c", "key": "KPM9XNOI-69M9E4H4-CSMIE92Y-9ZLXNUZQ", "payload": "nonce=162771815519554"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:55:55 [DEBUG] : client - event = data_received(<32 bytes>)
+2021-07-31 10:55:55 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Permission denied."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:55:55 [INFO ] : Stream no. 1
+2021-07-31 10:55:55 [INFO ] : ---
+2021-07-31 10:55:55 [INFO ] : {'error': 'Permission denied.'}
+2021-07-31 10:55:55 [INFO ] : ---
+2021-07-31 10:55:56 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:55:56 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:55:56 [INFO ] : Stream no. 2
+2021-07-31 10:55:56 [INFO ] : ---
+2021-07-31 10:55:56 [INFO ] : [1010]
+2021-07-31 10:55:56 [INFO ] : ---
+2021-07-31 10:55:57 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:55:57 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:55:57 [INFO ] : Stream no. 3
+2021-07-31 10:55:57 [INFO ] : ---
+2021-07-31 10:55:57 [INFO ] : [1010]
+2021-07-31 10:55:57 [INFO ] : ---
+2021-07-31 10:55:57 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 10:55:57 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C629A0>()]> cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C62D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 10:55:57 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C62CD0>()]>>
+2021-07-31 10:55:57 [DEBUG] : client x closing TCP connection
+2021-07-31 10:55:57 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x000002D1C8C50D90>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 10:55:57 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C629A0>()]> cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C62D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 10:55:57 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002D1C8C62D30>()]>>
+2021-07-31 10:55:57 [ERROR] : ***
+2021-07-31 10:55:57 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 10:55:57 [ERROR] : ***
+2021-07-31 10:58:40 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 10:58:40 [DEBUG] : client - state = CONNECTING
+2021-07-31 10:58:40 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x0000022CA42A5940>)
+2021-07-31 10:58:40 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 10:58:40 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'XLKVAKUbh1eAQ4WscpZFjA=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 10:58:40 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 10:58:40 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 10:58:40 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 07:58:40 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'k65cVj0reAkL+92j5pvhuYRBNuI='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '677548701f1216e3-DME')])
+2021-07-31 10:58:40 [DEBUG] : client - state = OPEN
+2021-07-31 10:58:40 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "sign": "78227656f5e6d67375ae157b2d7992f7647c6deeb56e31bf24c252928a9c01b5f67f8a424ef2b8a5d7fb691fbd4237740a3b7fa40db8f3bf9d0ed5fa797528db", "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": "nonce=162771832087305"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:58:41 [DEBUG] : client - event = data_received(<32 bytes>)
+2021-07-31 10:58:41 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Permission denied."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:58:41 [INFO ] : Stream no. 1
+2021-07-31 10:58:41 [INFO ] : ---
+2021-07-31 10:58:41 [INFO ] : {'error': 'Permission denied.'}
+2021-07-31 10:58:41 [INFO ] : ---
+2021-07-31 10:58:42 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 10:58:42 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 10:58:42 [INFO ] : Stream no. 2
+2021-07-31 10:58:42 [INFO ] : ---
+2021-07-31 10:58:42 [INFO ] : [1010]
+2021-07-31 10:58:42 [INFO ] : ---
+2021-07-31 10:58:42 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 10:58:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2D30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 10:58:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2CD0>()]>>
+2021-07-31 10:58:42 [DEBUG] : client x closing TCP connection
+2021-07-31 10:58:42 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x0000022CA428FD90>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 10:58:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2D30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 10:58:42 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022CA42A2BB0>()]>>
+2021-07-31 10:58:42 [ERROR] : ***
+2021-07-31 10:58:42 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 10:58:42 [ERROR] : ***
+2021-07-31 11:02:14 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 11:02:14 [DEBUG] : client - state = CONNECTING
+2021-07-31 11:02:14 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000002DD392B5940>)
+2021-07-31 11:02:14 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 11:02:14 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'm6xE7LwGoFrHaceCtJFh+Q=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 11:02:14 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 11:02:14 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 11:02:14 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 08:02:14 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'xUumEjSawxgtHAjhCSyICL+f5ec='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '67754da7fa0f1693-DME')])
+2021-07-31 11:02:14 [DEBUG] : client - state = OPEN
+2021-07-31 11:02:14 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": {"nonce": 162771853461228}, "sign": "c8770941a342c8025b67c7e3832276f46693dcb05569f96a61c1724003209df8fd2f7f81763392b617fd6f3208eb875826a568d7954976992152d6f1b76c7276"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:14 [DEBUG] : client - event = data_received(<39 bytes>)
+2021-07-31 11:02:14 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Invalid nonce in payload."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:14 [INFO ] : Stream no. 1
+2021-07-31 11:02:14 [INFO ] : ---
+2021-07-31 11:02:14 [INFO ] : {'error': 'Invalid nonce in payload.'}
+2021-07-31 11:02:14 [INFO ] : ---
+2021-07-31 11:02:15 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 11:02:15 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:15 [INFO ] : Stream no. 2
+2021-07-31 11:02:15 [INFO ] : ---
+2021-07-31 11:02:15 [INFO ] : [1010]
+2021-07-31 11:02:15 [INFO ] : ---
+2021-07-31 11:02:16 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 11:02:16 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2D30>()]> cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 11:02:16 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2CD0>()]>>
+2021-07-31 11:02:16 [DEBUG] : client x closing TCP connection
+2021-07-31 11:02:16 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x000002DD392A0D90>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 11:02:16 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2D30>()]> cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2D00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 11:02:16 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000002DD392B2BB0>()]>>
+2021-07-31 11:02:16 [ERROR] : ***
+2021-07-31 11:02:16 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 11:02:16 [ERROR] : ***
+2021-07-31 11:02:49 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 11:02:49 [DEBUG] : client - state = CONNECTING
+2021-07-31 11:02:49 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000001B38B895940>)
+2021-07-31 11:02:49 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 11:02:49 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'j3HQNeQv+J/0AhDdi1yrKA=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 11:02:49 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 11:02:49 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 11:02:49 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 08:02:49 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'a33Sa6Gs9pJaAz5i3+dY63yMPgM='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '67754e83593c76ad-DME')])
+2021-07-31 11:02:49 [DEBUG] : client - state = OPEN
+2021-07-31 11:02:49 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": {"nonce": 1627718569}, "sign": "383789ee19d52045b146dc4dd0f4b47a805b822f170a372ad3f705b37bc6ee222017857629739b7ea4e78b98246ac82130d2e69d8d3bde413aededd9b7b23c3a"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:49 [DEBUG] : client - event = data_received(<39 bytes>)
+2021-07-31 11:02:49 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Invalid nonce in payload."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:49 [INFO ] : Stream no. 1
+2021-07-31 11:02:49 [INFO ] : ---
+2021-07-31 11:02:49 [INFO ] : {'error': 'Invalid nonce in payload.'}
+2021-07-31 11:02:49 [INFO ] : ---
+2021-07-31 11:02:50 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 11:02:50 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:02:50 [INFO ] : Stream no. 2
+2021-07-31 11:02:50 [INFO ] : ---
+2021-07-31 11:02:50 [INFO ] : [1010]
+2021-07-31 11:02:50 [INFO ] : ---
+2021-07-31 11:02:51 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 11:02:51 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001B38B892D00>()]> cb=[<TaskWakeupMethWrapper object at 0x000001B38B892CD0>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 11:02:51 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001B38B892CA0>()]>>
+2021-07-31 11:02:51 [DEBUG] : client x closing TCP connection
+2021-07-31 11:02:51 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x000001B38B880D60>
+transport: <_ProactorSocketTransport fd=312 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 11:02:51 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001B38B892D00>()]> cb=[<TaskWakeupMethWrapper object at 0x000001B38B892CD0>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 11:02:51 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001B38B892B80>()]>>
+2021-07-31 11:02:51 [ERROR] : ***
+2021-07-31 11:02:51 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 11:02:51 [ERROR] : ***
+2021-07-31 11:06:03 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 11:06:03 [DEBUG] : client - state = CONNECTING
+2021-07-31 11:06:04 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000001FCCC744940>)
+2021-07-31 11:06:04 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 11:06:04 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'BtUGsc7fcQyNQxbgwjBjIw=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 11:06:04 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 11:06:04 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 11:06:04 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 08:06:04 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'ZzEbQiMluswKnCv6Hl815cxG2fI='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '677553438f7a7a75-DME')])
+2021-07-31 11:06:04 [DEBUG] : client - state = OPEN
+2021-07-31 11:06:04 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": {"nonce": 1627718764295992576}, "sign": "89784b6d5294377749717e15f609551af9deb92d76fe9f84c7d67133a0d168866302d4df186b7bb8bbba3e944088365c1b113253aa7f739a582edaca1a059443"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:06:04 [DEBUG] : client - event = data_received(<39 bytes>)
+2021-07-31 11:06:04 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Invalid nonce in payload."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:06:05 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 11:06:05 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:06:06 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 11:06:06 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001FCCC7439A0>()]> cb=[<TaskWakeupMethWrapper object at 0x000001FCCC743A60>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 11:06:06 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001FCCC743A30>()]>>
+2021-07-31 11:06:06 [DEBUG] : client x closing TCP connection
+2021-07-31 11:06:06 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x000001FCCC732AC0>
+transport: <_ProactorSocketTransport fd=292 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 11:06:06 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001FCCC7439A0>()]> cb=[<TaskWakeupMethWrapper object at 0x000001FCCC743A60>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 11:06:06 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001FCCC743880>()]>>
+2021-07-31 11:06:06 [ERROR] : ***
+2021-07-31 11:06:06 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 11:06:06 [ERROR] : ***
+2021-07-31 11:59:37 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 11:59:37 [DEBUG] : client - state = CONNECTING
+2021-07-31 11:59:37 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000001AD24114940>)
+2021-07-31 11:59:37 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 11:59:37 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', '/o2JNlDUVssXV3lPDPwAFA=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 11:59:38 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 11:59:38 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 11:59:38 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 08:59:38 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', '2jqQHYiW9yQpBhT5DxSWQ0OTN/w='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a1b9a992169f-DME')])
+2021-07-31 11:59:38 [DEBUG] : client - state = OPEN
+2021-07-31 11:59:38 [DEBUG] : client - state = CLOSING
+2021-07-31 11:59:38 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.CLOSE: 8>, data=b'\x03\xe8', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 11:59:38 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 11:59:38 [DEBUG] : client ! failing CLOSING WebSocket connection with code 1002
+2021-07-31 11:59:38 [DEBUG] : client - event = eof_received()
+2021-07-31 11:59:38 [DEBUG] : client - event = connection_lost(None)
+2021-07-31 11:59:38 [DEBUG] : client - state = CLOSED
+2021-07-31 11:59:38 [DEBUG] : client x code = 1006, reason = [no reason]
+2021-07-31 11:59:38 [DEBUG] : client x closing TCP connection
+2021-07-31 11:59:38 [ERROR] : ***
+2021-07-31 11:59:38 [ERROR] :  Order Handling Stream Connection Closed because of: TypeError('Object of type bytes is not JSON serializable')
+2021-07-31 11:59:38 [ERROR] : ***
+2021-07-31 11:59:38 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 11:59:38 [ERROR] : Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<order_handler() done, defined at E:\BOT_PYTHON\socket_testing.py:11> exception=SystemExit()>
+Traceback (most recent call last):
+  File "E:\BOT_PYTHON\socket_testing.py", line 35, in order_handler
+    await websocket.send(dumps(msg))
+  File "C:\PYTHON\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\PYTHON\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\PYTHON\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\PYTHON\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bytes is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\BOT_PYTHON\socket_testing.py", line 86, in main
+    loop.run_forever()
+  File "C:\PYTHON\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\PYTHON\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\PYTHON\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\PYTHON\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "E:\BOT_PYTHON\socket_testing.py", line 66, in order_handler
+    raise SystemExit
+SystemExit
+2021-07-31 12:00:13 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:00:13 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:00:13 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000001AB75244940>)
+2021-07-31 12:00:13 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:00:13 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'xuW08YYYCtYm1qdS78ASuw=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:00:13 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:00:13 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:00:13 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:00:13 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'P+Kl/BCMSTDNuB6oKOvQ5RrlW5M='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a2986d2e7b87-DME')])
+2021-07-31 12:00:13 [DEBUG] : client - state = OPEN
+2021-07-31 12:00:13 [DEBUG] : client - state = CLOSING
+2021-07-31 12:00:13 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.CLOSE: 8>, data=b'\x03\xe8', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:00:13 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:00:13 [DEBUG] : client ! failing CLOSING WebSocket connection with code 1002
+2021-07-31 12:00:13 [DEBUG] : client - event = eof_received()
+2021-07-31 12:00:13 [DEBUG] : client - event = connection_lost(None)
+2021-07-31 12:00:13 [DEBUG] : client - state = CLOSED
+2021-07-31 12:00:13 [DEBUG] : client x code = 1006, reason = [no reason]
+2021-07-31 12:00:13 [DEBUG] : client x closing TCP connection
+2021-07-31 12:00:13 [ERROR] : ***
+2021-07-31 12:00:13 [ERROR] :  Order Handling Stream Connection Closed because of: TypeError('Object of type bytes is not JSON serializable')
+2021-07-31 12:00:13 [ERROR] : ***
+2021-07-31 12:00:13 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:00:13 [ERROR] : Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<order_handler() done, defined at E:\BOT_PYTHON\socket_testing.py:11> exception=SystemExit()>
+Traceback (most recent call last):
+  File "E:\BOT_PYTHON\socket_testing.py", line 35, in order_handler
+    await websocket.send(dumps(msg))
+  File "C:\PYTHON\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\PYTHON\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\PYTHON\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\PYTHON\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bytes is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\BOT_PYTHON\socket_testing.py", line 86, in main
+    loop.run_forever()
+  File "C:\PYTHON\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\PYTHON\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\PYTHON\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\PYTHON\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "E:\BOT_PYTHON\socket_testing.py", line 66, in order_handler
+    raise SystemExit
+SystemExit
+2021-07-31 12:01:14 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:01:15 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:01:15 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x0000022071A84940>)
+2021-07-31 12:01:15 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:01:15 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', '7bNPwDGA08Fe9zZTG0nN+w=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:01:15 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:01:15 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:01:15 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:01:15 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'cygJaVP/5R1wf1INhXiqR7OE2C4='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a419c83e16db-DME')])
+2021-07-31 12:01:15 [DEBUG] : client - state = OPEN
+2021-07-31 12:01:15 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": {"nonce": 1627722075}, "sign": "86dd6c0a4e590b24885adb62929394ff0d432943f8f7af830039b3ad308e840a6cbbc3ddbc44dd55ea1646e4fe29903a9fdacf267588082ef512c5d7706b3b4f"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:15 [DEBUG] : client - event = data_received(<39 bytes>)
+2021-07-31 12:01:15 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Invalid nonce in payload."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:16 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:01:16 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:17 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:01:17 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:18 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:01:18 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022071A83A30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000022071A83A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 12:01:18 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022071A839D0>()]>>
+2021-07-31 12:01:18 [DEBUG] : client x closing TCP connection
+2021-07-31 12:01:18 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x0000022071A72850>
+transport: <_ProactorSocketTransport fd=528 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 12:01:18 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022071A83A30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000022071A83A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 12:01:18 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000022071A83850>()]>>
+2021-07-31 12:01:18 [ERROR] : ***
+2021-07-31 12:01:18 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 12:01:18 [ERROR] : ***
+2021-07-31 12:01:29 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:01:29 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:01:29 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x0000026164C04940>)
+2021-07-31 12:01:29 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:01:29 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', '3cBHgmnReZVnH/5h8AzPKQ=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:01:30 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:01:30 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:01:30 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:01:30 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', '528s5N5u38d1OoDClnN7258PTTU='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a475fde63a55-DME')])
+2021-07-31 12:01:30 [DEBUG] : client - state = OPEN
+2021-07-31 12:01:30 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": "nonce=1627722090", "sign": "ae443dba5428a134fd0f08a257fd71b29740075fbe804e4ced9a7c98be7e9660d6155bead6f0694b63213632f223e0fd8f3ca42189ccdd522098ebe95b803932"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:30 [DEBUG] : client - event = data_received(<32 bytes>)
+2021-07-31 12:01:30 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"error":"Permission denied."}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:31 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:01:31 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:32 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:01:32 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:01:32 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:01:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000026164C03A30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000026164C03A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 12:01:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000026164C039D0>()]>>
+2021-07-31 12:01:32 [DEBUG] : client x closing TCP connection
+2021-07-31 12:01:32 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x0000026164BF2850>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 12:01:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000026164C03A30>()]> cb=[<TaskWakeupMethWrapper object at 0x0000026164C03A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 12:01:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x0000026164C03850>()]>>
+2021-07-31 12:01:32 [ERROR] : ***
+2021-07-31 12:01:32 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 12:01:32 [ERROR] : ***
+2021-07-31 12:02:25 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:02:25 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:02:25 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x00000202EECE4940>)
+2021-07-31 12:02:25 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:02:25 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'RKZMU20W4wB0JoWKL+V8IQ=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:02:25 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:02:25 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:02:25 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:02:25 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'Xi7a0bT8q9DxGcyeQXzJwBlTau4='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a5d0bbc27b5b-DME')])
+2021-07-31 12:02:25 [DEBUG] : client - state = OPEN
+2021-07-31 12:02:25 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": "nonce=1627722145", "sign": "21ea63ecc502083e59b3d6b08995643b9aab9693a3ea74a9096cd5255708c6f18e0d421c6a8defcad898c701994bb019ed8c1c3930d8922d80d2e2161f54b02c"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:25 [DEBUG] : client - event = data_received(<10 bytes>)
+2021-07-31 12:02:25 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1000,1]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:26 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:26 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:27 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:27 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:28 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:28 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:29 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:29 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:30 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:30 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:31 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:02:31 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:02:32 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:02:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000202EECE3850>()]> cb=[<TaskWakeupMethWrapper object at 0x00000202EECE3A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 12:02:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000202EECE39D0>()]>>
+2021-07-31 12:02:32 [DEBUG] : client x closing TCP connection
+2021-07-31 12:02:32 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x00000202EECD2850>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 12:02:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000202EECE3850>()]> cb=[<TaskWakeupMethWrapper object at 0x00000202EECE3A00>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 12:02:32 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000202EECE38B0>()]>>
+2021-07-31 12:02:32 [ERROR] : ***
+2021-07-31 12:02:32 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 12:02:32 [ERROR] : ***
+2021-07-31 12:04:17 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:04:17 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:04:17 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x000001E4DF2E4940>)
+2021-07-31 12:04:17 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:04:17 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', '3pDl01Efs2J9NjHyq+H2sg=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:04:17 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:04:17 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:04:17 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:04:17 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'BH4FLqRfmOQDXr+sPJGdzKwf/WY='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775a88b89270c42-DME')])
+2021-07-31 12:04:17 [DEBUG] : client - state = OPEN
+2021-07-31 12:04:17 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": "nonce=162772225739253", "sign": "16d8b9ee68f8065222ec6a22b98c72e70cb95b2166b99effa634801732d3c379216e3f55738596aa88ae815efea9fae4f79f694c665c5244a8fc132457100c47"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:17 [DEBUG] : client - event = data_received(<10 bytes>)
+2021-07-31 12:04:17 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1000,1]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:18 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:18 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:19 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:19 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:20 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:20 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:21 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:21 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:22 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:22 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:23 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:23 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:24 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:24 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:25 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:25 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:26 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:26 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:27 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:27 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:28 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:28 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:29 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:29 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:30 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:04:30 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:04:31 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:04:31 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E37C0>()]> cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E3A30>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 12:04:31 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E3A00>()]>>
+2021-07-31 12:04:31 [DEBUG] : client x closing TCP connection
+2021-07-31 12:04:31 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x000001E4DF2D2AC0>
+transport: <_ProactorSocketTransport fd=424 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 12:04:31 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E37C0>()]> cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E3A30>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 12:04:31 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:40> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x000001E4DF2E3A60>()]>>
+2021-07-31 12:04:31 [ERROR] : ***
+2021-07-31 12:04:31 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 12:04:31 [ERROR] : ***
+2021-07-31 12:08:26 [DEBUG] : Using proactor: IocpProactor
+2021-07-31 12:08:26 [DEBUG] : client - state = CONNECTING
+2021-07-31 12:08:26 [DEBUG] : client - event = connection_made(<asyncio.sslproto._SSLProtocolTransport object at 0x00000158D8344940>)
+2021-07-31 12:08:26 [DEBUG] : client > GET / HTTP/1.1
+2021-07-31 12:08:26 [DEBUG] : client > Headers([('Host', 'api2.poloniex.com'), ('Upgrade', 'websocket'), ('Connection', 'Upgrade'), ('Sec-WebSocket-Key', 'InCG+MakzClo2KwW/XX7Lw=='), ('Sec-WebSocket-Version', '13'), ('Sec-WebSocket-Extensions', 'permessage-deflate; client_max_window_bits'), ('User-Agent', 'Python/3.9 websockets/9.1')])
+2021-07-31 12:08:27 [DEBUG] : client - event = data_received(<371 bytes>)
+2021-07-31 12:08:27 [DEBUG] : client < HTTP/1.1 101 Switching Protocols
+2021-07-31 12:08:27 [DEBUG] : client < Headers([('Date', 'Sat, 31 Jul 2021 09:08:27 GMT'), ('Connection', 'upgrade'), ('Upgrade', 'websocket'), ('Sec-WebSocket-Accept', 'TmECGNY5w8jrC3nvrGwYrbfT8lw='), ('X-Powered-By', 'Ratchet/0.3.4'), ('CF-Cache-Status', 'DYNAMIC'), ('Expect-CT', 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"'), ('Server', 'cloudflare'), ('CF-RAY', '6775aea3ea8a164e-DME')])
+2021-07-31 12:08:27 [DEBUG] : client - state = OPEN
+2021-07-31 12:08:27 [DEBUG] : client > Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'{"command": "subscribe", "channel": 1000, "key": "7AJJ71AC-Z8TU19W9-FRIJRHOK-YJALHGT2", "payload": "nonce=162772250705215", "sign": "8cfb560fb0aef44f298e36f91023b0cf17aa77d90a9e6159d2af47c8907f4f225f969382416fa2173a5b79ef581edc55a1116184cb721d19923093e6e3696ae2"}', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:27 [DEBUG] : client - event = data_received(<10 bytes>)
+2021-07-31 12:08:27 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1000,1]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:28 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:28 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:29 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:29 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:30 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:30 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:31 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:31 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:32 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:32 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:33 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:33 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:34 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:34 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:35 [DEBUG] : client - event = data_received(<8 bytes>)
+2021-07-31 12:08:35 [DEBUG] : client < Frame(fin=True, opcode=<Opcode.TEXT: 1>, data=b'[1010]', rsv1=False, rsv2=False, rsv3=False)
+2021-07-31 12:08:35 [INFO ] : Exiting and Cancelling all orders!
+2021-07-31 12:08:35 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000158D8343730>()]> cb=[<TaskWakeupMethWrapper object at 0x00000158D83439A0>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>
+2021-07-31 12:08:35 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<WebSocketCommonProtocol.keepalive_ping() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1027> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000158D8343970>()]>>
+2021-07-31 12:08:35 [DEBUG] : client x closing TCP connection
+2021-07-31 12:08:35 [ERROR] : Fatal error on SSL transport
+protocol: <asyncio.sslproto.SSLProtocol object at 0x00000158D83327F0>
+transport: <_ProactorSocketTransport fd=420 read=<_OverlappedFuture cancelled>>
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py", line 1095, in close_connection
+    await self.transfer_data_task
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\PYTHON\lib\asyncio\sslproto.py", line 684, in _process_write_backlog
+    self._transport.write(chunk)
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 359, in write
+    self._loop_writing(data=bytes(data))
+  File "C:\PYTHON\lib\asyncio\proactor_events.py", line 395, in _loop_writing
+    self._write_fut = self._loop._proactor.send(self._sock, data)
+AttributeError: 'NoneType' object has no attribute 'send'
+2021-07-31 12:08:35 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<WebSocketCommonProtocol.close_connection() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:1079> wait_for=<Task pending name='Task-2' coro=<WebSocketCommonProtocol.transfer_data() done, defined at C:\PYTHON\lib\site-packages\websockets\legacy\protocol.py:741> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000158D8343730>()]> cb=[<TaskWakeupMethWrapper object at 0x00000158D83439A0>(), _wait.<locals>._on_completion() at C:\PYTHON\lib\asyncio\tasks.py:513]>>
+2021-07-31 12:08:35 [ERROR] : Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<order_handler() running at E:\BOT_PYTHON\socket_testing.py:37> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0x00000158D83439D0>()]>>
+2021-07-31 12:08:35 [ERROR] : ***
+2021-07-31 12:08:35 [ERROR] :  Order Handling Stream Connection Closed because of: RuntimeError('no running event loop')
+2021-07-31 12:08:35 [ERROR] : ***

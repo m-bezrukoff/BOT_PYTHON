@@ -1,0 +1,69 @@
+закрываю позицию:
+Long	1631.14486364 TRX	0.06130663	0.02112193	0.79648266 USDT	-0.00163905 USDT	Close
+
+19.02 14:36:17.341  [1000, '', [
+					['p', 145031208880, 265, '0.04181394', '1631.14486364', 0, None], 
+					['m', 145031208880, 214, '-7.69266963', None], 
+					['m', 145031208880, 214, '-92.55899703', None], 
+					['t', 6069006, '0.06161838', '125.00000000', '0.00125000', 1, 145031208880, '0.00962787', '2021-02-19 11:36:17', None, '125.00000000'], 
+					['t', 6069007, '0.06153116', '1506.14486364', '0.00125000', 1, 145031208880, '0.11584355', '2021-02-19 11:36:17', None, '1506.14486364']]]
+19.02 14:36:17.438  [265, 200850361, [['o', 0, '0.06167397', '0.00000000'], ['o', 0, '0.06169375', '226628.28890716']]]
+
+
+
+19.02 14:36:17.530  [1000, '', [['b', 214, 'm', '0.25002463']]]
+
+
+error from callback <bound method SocketThread.on_message of <classes.cls_api_poloniex_socket_thread.SocketThread object at 0x0000022BCC4233A0>>: list index out of range
+  File "C:\PYTHON\lib\site-packages\websocket\_app.py", line 344, in _callback
+    callback(*args)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 81, in on_message
+    self.msg_interpreter(json_msg)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 284, in msg_interpreter
+    _amount = float(_[5])
+error from callback <bound method SocketThread.on_message of <classes.cls_api_poloniex_socket_thread.SocketThread object at 0x0000022BCC4233A0>>: 'dict' object has no attribute 'rate'
+  File "C:\PYTHON\lib\site-packages\websocket\_app.py", line 344, in _callback
+    callback(*args)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 81, in on_message
+    self.msg_interpreter(json_msg)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 214, in msg_interpreter
+    _rate = self.pairs.rate
+	
+	
+	
+	cancel order:
+		
+	---------------------- error pair_by_order 145044695380
+19.02 15:33:07.988  ----------------------------------------
+19.02 15:33:07.989  margin strategy is empty
+++++++++++++++++++++++++++++++++++++++++ Socket KeyError in on_message
+error from callback <bound method SocketThread.on_message of <classes.cls_api_poloniex_socket_thread.SocketThread object at 0x000001B58A853310>>: 'dict' object has no attribute 'rate'
+  File "C:\PYTHON\lib\site-packages\websocket\_app.py", line 344, in _callback
+    callback(*args)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 81, in on_message
+    self.msg_interpreter(json_msg)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 214, in msg_interpreter
+    _rate = self.pairs.rate
+19.02 15:33:08.900  -----------
+19.02 15:33:07.872  [1000, '', [['o', 145044695380, '0.00000000', 'c', None, '1622.65854429']]]
+19.02 15:33:08.373  [1000, '', [['b', 214, 'm', '-0.00000515']]]
+
+
+
+placed order & bought:
+
+
+19.02 15:33:47.312  margin strategy is empty
+error from callback <bound method SocketThread.on_message of <classes.cls_api_poloniex_socket_thread.SocketThread object at 0x000001B58A853310>>: list index out of range
+  File "C:\PYTHON\lib\site-packages\websocket\_app.py", line 344, in _callback
+    callback(*args)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 81, in on_message
+    self.msg_interpreter(json_msg)
+  File "E:\BOT_PYTHON\classes\cls_api_poloniex_socket_thread.py", line 284, in msg_interpreter
+    _amount = float(_[5])
+19.02 15:33:48.232  ---------
+
+19.02 15:33:48.180  [1000, '', [
+					['p', 145044895180, 265, '0.06169600', '1620.87321627', '1', None], 
+					['m', 145044895180, 315, '1618.84712475', None], 
+					['t', 6069937, '0.06169514', '1620.87321627', '0.00125000', 1, 145044895180, '2.02609152', '2021-02-19 12:33:48', None, '100.00000000']]]

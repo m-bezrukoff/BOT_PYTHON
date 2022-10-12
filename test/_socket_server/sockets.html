@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Socket Example</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+	<div id="sine-graph" style="width: 400px; height: 400px;">
+    <div id="serveroutput"></div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	
+<script>
+	var x = [0, 1, 2];
+	//alert(x.length - 1);
+	var y = [0, 2, 3];
+
+    var output = document.getElementById('serveroutput');
+	
+	out('begin');
+    var s = new WebSocket("ws://localhost:8889");
+	
+    s.onopen = function(e) {
+        out('connected');
+		request_data_interval = window.setInterval(requestData, 50);
+		var my_plot = {x: x, y: y, type: 'scatter',};
+		Plotly.newPlot('sine-graph', [my_plot]);
+    }
+	
+	s.onerror = function(e) {
+        out(e);
+    }
+	
+	s.onclose = function(e) {
+		if (event.wasClean) {
+			out("WS: " + `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+		} else {
+			out("WS: " + `[close] Connection died, code=${event.code} reason=${event.reason}`);
+		}
+	}
+
+    s.onmessage = function(e) {
+		out("received: " + e.data);
+        var msg = e.data;
+
+        //data = JSON.parse(e.data);
+        //var my_plot = {x: data.x, y: data.y, type: 'scatter',};
+		var new_x = x.length - 1 + 1;
+		out(new_x);
+		x.push(new_x);
+		y.push(msg);
+		//var my_plot = {x: x, y: y, type: 'scatter',};
+		//Plotly.newPlot('sine-graph', [my_plot]);
+		//Plotly.react('sine-graph', [my_plot]);
+		//Plotly.update('sine-graph', [my_plot]);
+		
+		Plotly.extendTraces('sine-graph', {x:[[new_x]], y:[[Math.random()]]}, [0]);
+
+		//for (let key in arr) {
+			//alert( arr[key] ); // яблоко, јпельсин, √руша
+		//}
+		//fruits.shift();
+    }
+	
+	function requestData() {
+        ws.send("get-data");
+    }
+		
+    function sendMsg() {
+        s.send(msg.value);
+    }
+	
+    function out(text) {
+        var el = document.createElement('p');
+        el.innerHTML = text;
+        output.appendChild(el);
+    }
+</script>
+</body>
+</html>
