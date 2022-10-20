@@ -7,17 +7,14 @@ class Results:
         self.results = []
 
     def process_result(self, _results, _close_rate, _close_amount):
-        weight_averate = sum([i['rate'] * i['amount'] for i in _results]) / sum([i['amount'] for i in _results])
         res_type = _results[0]['type']
         if res_type == 'long':
             self.results.append(add_percent(_close_rate * _close_amount - sum([i['rate'] * i['amount'] for i in _results]), -fee))
             print('закрываем лонг', self.results)
         else:
-            print('закрываем шорт', self.results)
             self.results.append(add_percent(sum([i['rate'] * i['amount'] for i in _results]) - _close_rate * _close_amount, -fee))
+            print('закрываем шорт', self.results)
         input()
-
-        # self.results.append(_close_rateweight_averate - _close_rate)
 
 
 class Session:
@@ -114,21 +111,24 @@ if __name__ == '__main__':
 
         if rate > s.orders_sell[0]['rate']:
             """ цена пошла вверх, скупаем в шорт"""
+
             if s.position:
                 if s.position[0]['type'] == 'long':
                     """ закрываем long позицию """
-                    if amount >= s.orders_sell[0]['amount']:
-                        print(f'{GREEN}закрываем long позицию {s.position}{END}')
-                        r.process_result(s.position, s.orders_sell[0]['rate'], s.orders_sell[0]['amount'])
-                        s = Session(rate, deep, rate / 100 * step_percent)
-                        print(r.results)
-                    continue
+                    if typ == 'sell':
+                        if amount >= s.orders_sell[0]['amount']:
+                            print(f'{GREEN}закрываем long позицию {s.position}{END}')
+                            r.process_result(s.position, s.orders_sell[0]['rate'], s.orders_sell[0]['amount'])
+                            s = Session(rate, deep, rate / 100 * step_percent)
+                            print(r.results)
+                            continue
 
             if rate < s.orders_buy[-1]['rate']:
                 print(f'{RED}Цена превысила пределы сетки orders_sell - закрываем ордера!{END}')
                 input()
             else:
-                for n, order in enumerate(s.orders_buy, 1):
+                for order in s.orders_buy:
+                    n = order['step']
                     if rate > order['rate']:
                         print(f'цена {rate} выше {n} уровня {order["rate"]}')
                         if s.max_reached_level < abs(n):
@@ -157,25 +157,27 @@ if __name__ == '__main__':
             if s.position:
                 if s.position[0]['type'] == 'short':
                     """ закрываем short позицию """
-                    if amount >= s.orders_buy[0]['amount']:
-                        print(f'{GREEN}закрываем short позицию {s.position}{END}')
-                        r.process_result(s.position, s.orders_buy[0]['rate'], s.orders_buy[0]['amount'])
-                        s = Session(rate, deep, rate / 100 * step_percent)
-                        print(r.results)
-                    continue
+                    if typ == 'buy':
+                        if amount >= s.orders_buy[0]['amount']:
+                            print(f'{GREEN}закрываем short позицию {s.position}{END}')
+                            r.process_result(s.position, s.orders_buy[0]['rate'], s.orders_buy[0]['amount'])
+                            s = Session(rate, deep, rate / 100 * step_percent)
+                            print(r.results)
+                            continue
 
             if rate < s.orders_buy[-1]['rate']:
                 print(f'{RED}Цена опустилась за пределы сетки orders_buy - закрываем ордера!{END}')
                 # input()
             else:
-                for n, order in enumerate(s.orders_buy, 1):
+                for order in s.orders_buy:
+                    n = order['step']
                     if rate < order['rate']:
                         # print(f'цена {rate} ниже {n} уровня {order["rate"]}')
                         if s.max_reached_level < abs(n):
                             s.max_reached_level = abs(n)
                         if typ == 'sell':
                             if amount >= order['amount']:
-                                print(f'{GREEN}ордер {n} исполнен rate: {order["rate"]} amount: {order["amount"]}{END}')
+                                print(f'{GREEN}STEP {n} buy ордер исполнен rate: {order["rate"]} amount: {order["amount"]}{END}')
                                 s.position.append({'rate': order['rate'], 'amount': order['amount'], 'type': 'long'})
                                 print(f'{CYAN}position {s.position}{END}')
                                 s.orders_sell = [{'rate': s.rate_opposite, 'amount_usd': s.amount_opposite * order['rate'], 'amount': s.amount_opposite, 'type': 'sell', 'step': 1, 'diff': None}]
