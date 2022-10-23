@@ -6,14 +6,19 @@ class Results:
     def __init__(self):
         self.results = []
 
+    @property
+    def total_profit(self):
+        return round(sum(self.results), 2)
+
     def process_result(self, _results, _close_rate, _close_amount):
         res_type = _results[0]['type']
         if res_type == 'long':
-            self.results.append(add_percent(_close_rate * _close_amount - sum([i['rate'] * i['amount'] for i in _results]), -fee))
+            self.results.append(add_percent(_close_rate * _close_amount - sum([i['rate'] * i['amount'] for i in _results]), -maker_fee))
             print('закрываем лонг', self.results)
         else:
-            self.results.append(add_percent(sum([i['rate'] * i['amount'] for i in _results]) - _close_rate * _close_amount, -fee))
+            self.results.append(add_percent(sum([i['rate'] * i['amount'] for i in _results]) - _close_rate * _close_amount, -maker_fee))
             print('закрываем шорт', self.results)
+        print(f'вся прибыль {self.total_profit} USD')
         input()
 
 
@@ -31,7 +36,6 @@ class Session:
         self.orders_buy = self.gen_orders('buy', _deep)     # ниже уровня
         self.orders_sell = self.gen_orders('sell', _deep)   # выше уровня
         self.position = []
-        self.max_reached_level = 0
 
     @property
     def rate_opposite(self):
@@ -44,6 +48,10 @@ class Session:
     @property
     def amount_opposite(self):
         return sum([i['amount'] for i in self.position])
+
+    @property
+    def amount_usd(self):
+        return round(sum([i['amount'] * i['rate'] for i in self.position]), 2)
 
     @property
     def rate_full_diff(self):
@@ -91,11 +99,12 @@ if __name__ == '__main__':
         'to': '2021-02-01 01:00:00',
     }
 
-    step_percent = 0.05   # %
-    mult = 3        # множитель следующей ставки
-    deep = 5        # количество ставок в гриде в одну сторону
-    bet = 10        # начальная ставка в 10 $ * rate
-    fee = 0.01      # %
+    step_percent = 0.1   # %
+    mult = 3            # множитель следующей ставки
+    deep = 5            # количество ставок в гриде в одну сторону
+    bet = 10            # начальная ставка в 10 $ * rate
+    maker_fee = 0.01    # %
+    fee_taker = 0.075   # %
 
     data = Data(params)
     r = Results()
@@ -107,90 +116,93 @@ if __name__ == '__main__':
         amount = trade['amount']
         typ = trade['type']
 
-        print(f'{trade} изменение на {GREEN if s.rate_diff >= 0 else RED}{s.rate_diff}%{END} из {s.rate_full_diff}%, {s.prev_rate}')
+        print(f'{trade} {GREEN if s.rate_full_diff >= 0 else RED}{s.rate_full_diff}%{END} {s.prev_rate}')
 
-        if rate > s.orders_sell[0]['rate']:
-            """ цена пошла вверх, скупаем в шорт"""
+        if rate >= s.orders_sell[0]['rate']:
+            """ ----------------------------------------------- цена пошла вверх, скупаем в шорт --------------------------------------------------------------------- """
 
             if s.position:
                 if s.position[0]['type'] == 'long':
                     """ закрываем long позицию """
                     if typ == 'sell':
                         if amount >= s.orders_sell[0]['amount']:
-                            print(f'{GREEN}закрываем long позицию {s.position}{END}')
+                            print(f'{GREEN}закрываем long позицию {s.amount_usd} USD {s.position}{END}')
                             r.process_result(s.position, s.orders_sell[0]['rate'], s.orders_sell[0]['amount'])
                             s = Session(rate, deep, rate / 100 * step_percent)
                             print(r.results)
-                            continue
+                    continue
 
-            if rate < s.orders_buy[-1]['rate']:
-                print(f'{RED}Цена превысила пределы сетки orders_sell - закрываем ордера!{END}')
-                input()
-            else:
-                for order in s.orders_buy:
-                    n = order['step']
-                    if rate > order['rate']:
-                        print(f'цена {rate} выше {n} уровня {order["rate"]}')
-                        if s.max_reached_level < abs(n):
-                            s.max_reached_level = abs(n)
-                        if typ == 'buy':
-                            if amount >= order['amount']:
-                                print(f'ордер {n} исполнен rate: {order["rate"]} amount: {order["amount"]}')
-                                s.position.append({'rate': order['rate'], 'amount': order['amount'], 'type': 'short'})
-                                print(f'{CYAN}position {s.position}{END}')
-                                s.orders_buy = [{'rate': s.rate_opposite, 'amount_usd': s.amount_opposite * order['rate'], 'amount': s.amount_opposite, 'type': 'buy', 'step': 1, 'diff': None}]
-                                print(f'{WHITE}orders_buy {s.orders_buy}{END}')
-                                s.current_step = order['step']
-                                s.orders_sell = s.gen_orders('sell', deep)
-                                # input()
-                            else:
-                                print(f'ордер {n} не исполнен, малый amount {amount}')
+            for order in s.orders_sell:
+                n = order['step']
+                if rate >= order['rate']:
+                    print(f'цена {rate} выше {n} уровня {order["rate"]}')
+                    if typ == 'buy':
+                        if amount >= order['amount']:
+                            print(f'ордер {n} исполнен rate: {order["rate"]} amount: {order["amount"]}')
+                            s.position.append({'rate': order['rate'], 'amount': order['amount'], 'type': 'short'})
+                            print(f'{CYAN}position {s.position}{END}')
+                            s.orders_buy = [{'rate': s.rate_opposite, 'amount_usd': s.amount_opposite * order['rate'], 'amount': s.amount_opposite, 'type': 'buy', 'step': 1, 'diff': None}]
+                            amount -= order['amount']
+                            print(f'{WHITE}orders_buy {s.orders_buy}{END}')
+                            s.current_step = n
+                            s.orders_sell = s.gen_orders('sell', deep)
                         else:
-                            print('ордер не исполнен, произошла рыночная покупка')
+                            print(f'ордер {n} не исполнен, малый amount {amount}')
                             break
                     else:
+                        print('ордер не исполнен, произошла рыночная покупка')
                         break
-            # input()
+                else:
+                    break
 
-        if rate < s.orders_buy[0]['rate']:
-            """ цена пошла вниз, скупаем в лонг"""
+            if rate > s.orders_sell[-1]['rate']:
+                print(RED, '-' * 80)
+                print(f'{RED}Цена превысила пределы сетки orders_sell - закрываем ордера!{END}')
+                print('-' * 80, END)
+                input()
+                continue
+
+        if rate <= s.orders_buy[0]['rate']:
+            """ -----------------------------------------------  цена пошла вниз, скупаем в лонг --------------------------------------------------------------------- """
             if s.position:
                 if s.position[0]['type'] == 'short':
                     """ закрываем short позицию """
                     if typ == 'buy':
                         if amount >= s.orders_buy[0]['amount']:
-                            print(f'{GREEN}закрываем short позицию {s.position}{END}')
+                            print(f'{GREEN}закрываем short позицию {s.amount_usd} USD {s.position}{END}')
                             r.process_result(s.position, s.orders_buy[0]['rate'], s.orders_buy[0]['amount'])
                             s = Session(rate, deep, rate / 100 * step_percent)
                             print(r.results)
-                            continue
+                    continue
 
-            if rate < s.orders_buy[-1]['rate']:
-                print(f'{RED}Цена опустилась за пределы сетки orders_buy - закрываем ордера!{END}')
-                # input()
-            else:
-                for order in s.orders_buy:
-                    n = order['step']
-                    if rate < order['rate']:
-                        # print(f'цена {rate} ниже {n} уровня {order["rate"]}')
-                        if s.max_reached_level < abs(n):
-                            s.max_reached_level = abs(n)
-                        if typ == 'sell':
-                            if amount >= order['amount']:
-                                print(f'{GREEN}STEP {n} buy ордер исполнен rate: {order["rate"]} amount: {order["amount"]}{END}')
-                                s.position.append({'rate': order['rate'], 'amount': order['amount'], 'type': 'long'})
-                                print(f'{CYAN}position {s.position}{END}')
-                                s.orders_sell = [{'rate': s.rate_opposite, 'amount_usd': s.amount_opposite * order['rate'], 'amount': s.amount_opposite, 'type': 'sell', 'step': 1, 'diff': None}]
-                                print(f'{WHITE}orders_sell {s.orders_sell}{END}')
-                                s.current_step = order['step']
-                                s.orders_buy = s.gen_orders('buy', deep)
-                                # input()
-                            else:
-                                print(f'ордер {n} не исполнен, малый amount {amount}')
+            for order in s.orders_buy:
+                n = order['step']
+                if rate < order['rate']:
+                    if typ == 'sell':
+                        if amount >= order['amount']:
+                            print(f'{GREEN}STEP {n} buy ордер исполнен rate: {order["rate"]} amount: {order["amount"]}{END}')
+                            s.position.append({'rate': order['rate'], 'amount': order['amount'], 'type': 'long'})
+                            print(f'{CYAN}position {s.position}{END}')
+                            s.orders_sell = [{'rate': s.rate_opposite, 'amount_usd': s.amount_opposite * order['rate'], 'amount': s.amount_opposite, 'type': 'sell', 'step': 1, 'diff': None}]
+                            amount -= order['amount']
+                            print(f'{WHITE}orders_sell {s.orders_sell}{END}')
+                            s.current_step = order['step']
+                            s.orders_buy = s.gen_orders('buy', deep)
+                            # input()
                         else:
-                            print('ордер не исполнен, произошла рыночная покупка')
+                            print(f'ордер {n} не исполнен, малый amount {amount}')
                             break
                     else:
+                        print('ордер не исполнен, произошла рыночная покупка')
                         break
+                else:
+                    break
+
+            if rate < s.orders_buy[-1]['rate']:
+                print(RED, '-' * 80)
+                print(f'{RED}Цена ниже пределов сетки orders_buy - закрываем ордера!{END}')
+                print('-' * 80, END)
+                input()
+                continue
 
         s.prev_rate = rate
