@@ -2,7 +2,6 @@ import pickle
 from os import path, remove
 # import zstd
 import zstandard as zstd
-# from numcodecs import Zstd as z_std
 
 
 class FileIO:
@@ -26,8 +25,7 @@ class FileIO:
 
     def save_zipped_file(self, _path, data):
         with open(_path, 'wb') as f:
-            # f.write(z_std.encode(pickle.dumps(data, protocol=-1), 1, 0))
-            f.write(z_std.compress(pickle.dumps(data, protocol=-1), 1, 0))
+            f.write(zstd.compress(pickle.dumps(data, protocol=-1), 1))
 
     def load_zipped_file(self, _path):
         if path.isfile(_path) and path.getsize(_path) > 0:
